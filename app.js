@@ -157,3 +157,49 @@
 // };
 
 // Events
+
+// const EventEmitter = require("events");
+// var customEmitter = new EventEmitter();
+
+// customEmitter.on("response", () => {
+//   console.log("data recived");
+// });
+// customEmitter.emit("response");
+
+// const http = require("http");
+
+// const server = http.createServer();
+
+// server.on("request", (req, res) => {
+//   res.end("welcome");
+// });
+
+// server.listen(5000);
+
+// Streams
+
+// const { createReadStream } = require("fs");
+// const stream = createReadStream("./content/three.txt", { highWaterMark: 9000 });
+
+// stream.on("data", (res) => {
+//   console.log(res);
+// });
+// stream.on("error", (res) => {
+//   console.log(res);
+// });
+
+// const http = require("http");
+// const fs = require("fs");
+
+// const server = http.createServer();
+
+// server.on("request", (req, res) => {
+//   const fileStream = fs.createReadStream("./content/three.txt", "utf-8");
+//   fileStream.on("open", () => {
+//     fileStream.pipe(res);
+//   });
+//   fileStream.on("error", (err) => {
+//     res.write("error vai");
+//   });
+// });
+// server.listen(5000);
