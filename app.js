@@ -96,3 +96,19 @@
 // });
 
 // server.listen(5000);
+
+// Event loops
+
+const { readFile } = require("fs");
+
+console.log("start 1 task");
+
+readFile("./content/first.txt", "utf-8", (err, res) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(res);
+  console.info("complete first task");
+});
+console.log("start next task");
