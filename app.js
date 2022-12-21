@@ -99,16 +99,61 @@
 
 // Event loops
 
-const { readFile } = require("fs");
+// const { readFile } = require("fs");
 
-console.log("start 1 task");
+// console.log("start 1 task");
 
-readFile("./content/first.txt", "utf-8", (err, res) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
-  console.log(res);
-  console.info("complete first task");
-});
-console.log("start next task");
+// readFile("./content/first.txt", "utf-8", (err, res) => {
+//   if (err) {
+//     console.error(err);
+//     return;
+//   }
+//   console.log(res);
+//   console.info("complete first task");
+// });
+// console.log("start next task");
+
+// better way to get async call backs
+
+// const { readFile, writeFile } = require("fs").promises;
+
+// const util = require("util");
+// const readFilePromise = util.promisify(readFile);
+// const writeFilePromise = util.promisify(writeFile);
+
+// const getText = (path) => {
+//   return new Promise((resolve, reject) => {
+//     readFile(path, "utf-8", (err, data) => {
+//       if (err) {
+//         return;
+//       } else {
+//         resolve(data);
+//       }
+//     });
+//   });
+// };
+
+// getText("./content/first.txt")
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });
+
+// const start = async () => {
+//   try {
+//     const first = await readFile("./content/first.txt", "utf-8");
+//     const second = await readFile("./content/second.txt", "utf-8");
+//     await writeFile(
+//       "./content/async-result.txt",
+//       "THIS IS THE PROMISE",
+//       "utf-8"
+//     );
+//     console.log(first, second);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+// Events
