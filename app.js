@@ -249,26 +249,43 @@ const { data1 } = require("./uitls/MOCK_DATA");
 const app = express();
 
 // to send data acc to what we want
-app.get("/api/data/:dataID", (req, res) => {
-  const data_to_send = data1.find(
-    (product) => product.index == req.params.dataID
-  );
-  res.json(data_to_send);
+// app.get("/api/data/:dataID", (req, res) => {
+//   const data_to_send = data1.find(
+//     (product) => product.index == req.params.dataID
+//   );
+//   res.json(data_to_send);
+// });
+
+// app.get("/api/query", (req, res) => {
+//   console.log(req.query);
+//   const { search, limit } = req.query;
+//   let sorted_data = [...data1];
+//   if (search) {
+//     sorted_data = sorted_data.filter((product) => {
+//       return product.name.startsWith(search);
+//     });
+//   }
+//   if (limit) {
+//     sorted_data = sorted_data.slice(0, Number(limit));
+//   }
+//   res.status(200).json(sorted_data);
+// });
+
+// MIDDLEWARE
+// req = > middleware => res
+
+const logger = require("./uitls/logger");
+app.use("/api", logger);
+
+app.get("/", (req, res) => {
+  res.send("Home");
 });
 
-app.get("/api/query", (req, res) => {
-  console.log(req.query);
-  const { search, limit } = req.query;
-  let sorted_data = [...data1];
-  if (search) {
-    sorted_data = sorted_data.filter((product) => {
-      return product.name.startsWith(search);
-    });
-  }
-  if (limit) {
-    sorted_data = sorted_data.slice(0, Number(limit));
-  }
-  res.status(200).json(sorted_data);
+app.get("/about", (req, res) => {
+  res.send("ABOUT");
+});
+app.get("/api", (req, res) => {
+  res.send("API");
 });
 
 app.listen(5000, (req, res) => {
