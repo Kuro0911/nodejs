@@ -231,15 +231,46 @@
 //app.use
 //app.listen
 
-const express = require("express");
-const path = require("path");
-const app = express();
-const port = 5000;
+// const express = require("express");
+// const path = require("path");
+// const app = express();
+// const port = 5000;
 
-app.use(express.static("./public"));
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./content/index.html"));
+// app.use(express.static("./public"));
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./content/index.html"));
+// });
+// app.listen(port, () => {
+//   console.log("server on " + port);
+// });
+
+const express = require("express");
+const { data1 } = require("./uitls/MOCK_DATA");
+const app = express();
+
+// to send data acc to what we want
+app.get("/api/data/:dataID", (req, res) => {
+  const data_to_send = data1.find(
+    (product) => product.index == req.params.dataID
+  );
+  res.json(data_to_send);
 });
-app.listen(port, () => {
-  console.log("server on " + port);
+
+app.get("/api/query", (req, res) => {
+  console.log(req.query);
+  const { search, limit } = req.query;
+  let sorted_data = [...data1];
+  if (search) {
+    sorted_data = sorted_data.filter((product) => {
+      return product.name.startsWith(search);
+    });
+  }
+  if (limit) {
+    sorted_data = sorted_data.slice(0, Number(limit));
+  }
+  res.status(200).json(sorted_data);
+});
+
+app.listen(5000, (req, res) => {
+  console.log("server start at 5000");
 });
