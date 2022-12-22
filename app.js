@@ -203,3 +203,43 @@
 //   });
 // });
 // server.listen(5000);
+
+// EXPRESS JS
+
+// const express = require("express");
+
+// const app = express();
+// app.get("/", (req, res) => {
+//   res.status(200).send("Hello ji");
+// });
+// app.get("/about", (req, res) => {
+//   res.send("about");
+// });
+// app.all("*", (req, res) => {
+//   res.status(404).send("not found");
+// });
+
+// app.listen(5000, () => {
+//   console.log("server is listening on 5000");
+// });
+
+//app.get
+//app.post
+//app.put
+//app.delete
+//app.all
+//app.use
+//app.listen
+
+const express = require("express");
+const path = require("path");
+const app = express();
+const port = 5000;
+
+app.use(express.static("./public"));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./content/index.html"));
+});
+app.listen(port, () => {
+  console.log("server on " + port);
+});
