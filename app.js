@@ -244,9 +244,9 @@
 //   console.log("server on " + port);
 // });
 
-const express = require("express");
-const { data1 } = require("./uitls/MOCK_DATA");
-const app = express();
+// const express = require("express");
+// const { data1 } = require("./uitls/MOCK_DATA");
+// const app = express();
 
 // to send data acc to what we want
 // app.get("/api/data/:dataID", (req, res) => {
@@ -274,20 +274,54 @@ const app = express();
 // MIDDLEWARE
 // req = > middleware => res
 
-const logger = require("./uitls/logger");
-app.use("/api", logger);
+// const logger = require("./uitls/logger");
+// app.use("/api", logger);
 
-app.get("/", (req, res) => {
-  res.send("Home");
+// app.get("/", (req, res) => {
+//   res.send("Home");
+// });
+
+// app.get("/about", (req, res) => {
+//   res.send("ABOUT");
+// });
+// app.get("/api", (req, res) => {
+//   res.send("API");
+// });
+
+// app.listen(5000, (req, res) => {
+//   console.log("server start at 5000");
+// });
+
+// http METHODS
+
+let { data1, data2 } = require("./uitls/MOCK_DATA");
+const express = require("express");
+const app = express();
+
+// get method
+app.get("/api/data/:dataNo", (req, res) => {
+  if (req.params.dataNo === "1") {
+    console.log("sent data 1");
+    return res.json(data1);
+  }
+  console.log("sent data 2");
+  res.json(data2);
 });
 
-app.get("/about", (req, res) => {
-  res.send("ABOUT");
-});
-app.get("/api", (req, res) => {
-  res.send("API");
+// post method
+
+// PARSE data for form
+// app.use(express.urlencoded({ extended: false }));
+
+// PARSE data for json
+app.use(express.json());
+
+app.post("/api/post/data/:dataNo", (req, res) => {
+  console.log("response");
+  console.log(req.body);
+  res.status(200).send("OK");
 });
 
-app.listen(5000, (req, res) => {
-  console.log("server start at 5000");
+app.listen(5000, () => {
+  console.log("Server Listening at 5000");
 });
