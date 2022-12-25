@@ -314,14 +314,14 @@ app.get("/api/data/:dataNo", (req, res) => {
 // app.use(express.urlencoded({ extended: false }));
 
 // PARSE data for json
-app.use(express.json());
+// app.use(express.json());
 
-app.post("/api/post/data/:dataNo", (req, res) => {
-  console.log("response");
-  console.log(req.body);
-  res.status(200).send("OK");
-});
+// app.post("/api/post/data/:dataNo", (req, res) => {
+//   console.log("response");
+//   console.log(req.body);
+//   res.status(200).send("OK");
+// });
 
-app.listen(5000, () => {
-  console.log("Server Listening at 5000");
-});
+// app.listen(5000, () => {
+//   console.log("Server Listening at 5000");
+// });
